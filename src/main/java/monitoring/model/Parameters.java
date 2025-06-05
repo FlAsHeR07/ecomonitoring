@@ -10,5 +10,15 @@ public class Parameters {
     private int wasteProduction;
     private int carbonEmissions;
     private int waterUsage;
+
+    public Parameters(int energyConsumption, int wasteProduction, int carbonEmissions, int waterUsage) {
+        this.energyConsumption = energyConsumption;
+        this.wasteProduction = wasteProduction;
+        this.carbonEmissions = carbonEmissions;
+        this.waterUsage = waterUsage;
+    }
+
+    public Parameters() {
+    }
 }
 

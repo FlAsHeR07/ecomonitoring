@@ -1,10 +1,12 @@
 package monitoring.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,8 +17,8 @@ public class Enterprise {
 
     @Id
     @Column(columnDefinition = "bigint")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "enterprise_seq")
-    @SequenceGenerator(name = "enterprise_seq", sequenceName = "enterprise_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "enterprise_gen")
+    @SequenceGenerator(name = "enterprise_gen", sequenceName = "enterprise_seq", allocationSize = 1)
     private Long id;
 
     private String name;
@@ -39,28 +41,8 @@ public class Enterprise {
 
     //////////////////////////////////////////////////
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private SectionIndicators air;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    private SectionIndicators water;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    private SectionIndicators soil;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    private SectionIndicators radiation;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    private SectionIndicators waste;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    private SectionIndicators economic;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    private SectionIndicators health;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    private SectionIndicators energy;
+    @JsonManagedReference
+    @OneToMany(mappedBy = "enterprise", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<IndicatorEntry> indicators = new ArrayList<>();
 }
 
