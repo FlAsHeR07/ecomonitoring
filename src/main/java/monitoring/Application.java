@@ -1,8 +1,5 @@
 package monitoring;
 
-import monitoring.model.*;
-import monitoring.repository.EnterpriseRepository;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -30,8 +27,6 @@ public class Application {
                         .allowedOrigins("*") // Разрешаем всех
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*");
-
-                System.out.println("*********** Completed ***************");
             }
         };
     }
